@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32811.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureADWeb", "AzureADWeb\AzureADWeb.csproj", "{0DF4643D-47DC-4EDB-8836-F7F1B2FC3218}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureADApi", "AzureADApi\AzureADApi.csproj", "{B357A347-757C-4C7F-9D36-488576E4786B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0DF4643D-47DC-4EDB-8836-F7F1B2FC3218}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DF4643D-47DC-4EDB-8836-F7F1B2FC3218}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DF4643D-47DC-4EDB-8836-F7F1B2FC3218}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DF4643D-47DC-4EDB-8836-F7F1B2FC3218}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B357A347-757C-4C7F-9D36-488576E4786B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B357A347-757C-4C7F-9D36-488576E4786B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B357A347-757C-4C7F-9D36-488576E4786B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B357A347-757C-4C7F-9D36-488576E4786B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {130F64D4-CA8F-4FB4-B464-DE11F4500162}
+	EndGlobalSection
+EndGlobal
