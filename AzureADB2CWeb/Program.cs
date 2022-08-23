@@ -6,7 +6,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddHttpClient();
 
 builder.Services.AddAuthentication(options =>
     {
@@ -29,9 +28,6 @@ builder.Services.AddAuthentication(options =>
     });
 
 var app = builder.Build();
-
-//application/client ID df05fc5b-f702-4e3f-bc06-9de384f00875
-//Auth endpoint https://login.microsoftonline.com/afaa35f0-fb8b-4955-b180-a8b270081ff2/oauth2/v2.0/authorize
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
