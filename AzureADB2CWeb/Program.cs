@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddHttpClient();
 
 builder.Services.AddAuthentication(options =>
     {
@@ -15,12 +16,12 @@ builder.Services.AddAuthentication(options =>
     .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
     {
         options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-        options.Authority = "https://login.microsoftonline.com/afaa35f0-fb8b-4955-b180-a8b270081ff2/v2.0";
-        options.ClientId = "df05fc5b-f702-4e3f-bc06-9de384f00875";
+        options.Authority = "https://udemyazureb2c2.b2clogin.com/UdemyAzureB2C2.onmicrosoft.com/B2C_1_SignIn_SignUp/v2.0/";
+        options.ClientId = "5afc39ba-ebba-4703-a75d-f0d761122671";
         options.ResponseType = "code";
         options.SaveTokens = true;
-        options.ClientSecret = "_0H8Q~9LryQ9vUlVzhCA0D7BPA8f7S3TTbFgQcHm";
-        options.Scope.Add("api://3a192579-8498-486a-a592-84ffefa391f4/Admin.Access");
+        options.ClientSecret = "RkU8Q~E2c0bGA-UHiU-vi49A-3wrPF.VzITpwb2D";
+        options.Scope.Add(options.ClientId);
         options.TokenValidationParameters = new TokenValidationParameters
         {
             NameClaimType = "name"

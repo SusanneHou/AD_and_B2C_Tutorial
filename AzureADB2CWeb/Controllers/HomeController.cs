@@ -2,16 +2,23 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Authentication;
+using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace AzureADB2CWeb.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IHttpClientFactory httpClientFactory)
         {
             _logger = logger;
+            _httpClientFactory = httpClientFactory;
         }
 
         public IActionResult Index()
@@ -23,6 +30,44 @@ namespace AzureADB2CWeb.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult SignIn()
+        {
+            var scheme = OpenIdConnectDefaults.AuthenticationScheme;
+            var rediretUrl = Url.ActionContext.HttpContext.Request.Scheme
+                             + "://" + Url.ActionContext.HttpContext.Request.Host;
+            return Challenge(new AuthenticationProperties
+            {
+                RedirectUri = rediretUrl
+            }, scheme);
+        }
+
+        public IActionResult SignOut()
+        {
+            var scheme = OpenIdConnectDefaults.AuthenticationScheme;
+            return SignOut(new AuthenticationProperties(), CookieAuthenticationDefaults.AuthenticationScheme, scheme);
+        }
+
+
+        public async Task<IActionResult> CallAPI()
+        {
+            var accessToken = await HttpContext.GetTokenAsync("access_token");
+
+            var client = _httpClientFactory.CreateClient();
+            var request = new HttpRequestMessage(HttpMethod.Get, "https://localhost:44306/WeatherForecast");
+
+            request.Headers.Authorization =
+                new AuthenticationHeaderValue(JwtBearerDefaults.AuthenticationScheme, accessToken);
+
+            var response = await client.SendAsync(request);
+
+            if (response.StatusCode != System.Net.HttpStatusCode.OK)
+            {
+
+            }
+
+            return Content(response.ToString());
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
